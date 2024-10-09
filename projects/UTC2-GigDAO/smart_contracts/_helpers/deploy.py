@@ -1,36 +1,44 @@
+# deploy.py
 from algosdk.v2client import algod
-from smart_contracts.contract.main_contract import MainContract
 from smart_contracts.contract.contract import GigDAOContract
 from smart_contracts.contract.nft_contract import NFTMintingContract
-from crypto_utils import generate_account, get_mnemonic
 
-def main():
-    # Khởi tạo Algod client
-    algod_address = "http://127.0.0.1:8101"
-    algod_token = "4ae95cae3a5203e9e484d92a58697170c47c1422417102ed52a885fdf224bbb5"
-    algod_client = algod.AlgodClient(algod_token, algod_address)
+def deploy():
+    # Sử dụng Algonode.io cho testnet
+    algod_address = "https://104.196.252.103"
+    algod_token = ""  # Algonode không yêu cầu token
+    
+    try:
+        # Khởi tạo Algod client
+        algod_client = algod.AlgodClient(algod_token, algod_address)
 
-    # Tạo tài khoản cho người triển khai
-    private_key, address = generate_account()
-    print(f"Địa chỉ người triển khai: {address}")
-    print(f"Mnemonic của người triển khai: {get_mnemonic(private_key)}")
+        # Kiểm tra kết nối
+        status = algod_client.status()
+        print(f"Kết nối thành công. Phiên bản node: {status['last-round']}")
 
-    # Triển khai Main Contract
-    main_contract = MainContract(algod_client)
-    main_app_id = main_contract.create_main_contract(address, private_key)
-    print(f"Main Contract đã được triển khai với app_id: {main_app_id}")
+        # Lưu ý: Bạn cần cung cấp địa chỉ và private key của người triển khai
+        # Thay thế các giá trị dưới đây bằng địa chỉ và private key thực tế
+        address = "MV7HWZVFW64CK2A5JCUEXXWORNZRIRQLPPNAUPO4IP4AHMZ7XB6BU2ZSNM"
+        private_key = "tree river prefer carry lift together charge priority cloud oxygen model twin hockey citizen deputy baby flip security bullet dry seat concert special about pride"
 
-    # Triển khai GigDAO Contract
-    gig_dao_contract = GigDAOContract(algod_client)
-    gig_dao_app_id = gig_dao_contract.create_gig_dao(address, private_key)
-    print(f"GigDAO Contract đã được triển khai với app_id: {gig_dao_app_id}")
+        print(f"Địa chỉ người triển khai: {address}")
 
-    # Triển khai NFT Minting Contract
-    nft_minting_contract = NFTMintingContract(algod_client)
-    nft_minting_app_id = nft_minting_contract.create_nft_minting_contract(address, private_key)
-    print(f"NFT Minting Contract đã được triển khai với app_id: {nft_minting_app_id}")
+        # Triển khai GigDAO Contract
+        gig_dao_contract = GigDAOContract(algod_client)
+        gig_dao_app_id = gig_dao_contract.create_gig_dao(address, private_key)
+        print(f"GigDAO Contract đã được triển khai với app_id: {gig_dao_app_id}")
 
-    print("Tất cả các contract đã được triển khai thành công!")
+        # Triển khai NFT Minting Contract
+        nft_minting_contract = NFTMintingContract(algod_client)
+        nft_minting_app_id = nft_minting_contract.create_nft_minting_contract(address, private_key)
+        print(f"NFT Minting Contract đã được triển khai với app_id: {nft_minting_app_id}")
+
+        print("Tất cả các contract đã được triển khai thành công!")
+
+    except Exception as e:
+        print(f"Lỗi khi triển khai: {str(e)}")
+        import traceback
+        print(traceback.format_exc())
 
 if __name__ == "__main__":
-    main()
+    deploy()
