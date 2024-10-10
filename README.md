@@ -1,4 +1,4 @@
-# UTC2-GigDAO
+# UTC2-GigDAO (DAO-based Cooperative for Gig Workers)
 
 Welcome to your new AlgoKit project!
 
@@ -20,8 +20,6 @@ To get started execute:
 2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
 
 Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).
-
-# DAO-based Cooperative for Gig Workers
 
 ## Main Functions of UTC2-GigDAO
 
