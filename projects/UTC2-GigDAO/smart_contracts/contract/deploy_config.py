@@ -14,9 +14,6 @@ def deploy(
     app_spec: algokit_utils.ApplicationSpecification,
     deployer: algokit_utils.Account,
 ) -> None:
-    from smart_contracts.artifacts.contract.contract_client import (
-        ContractClient,
-    )
 
     app_client = ContractClient(
         algod_client,
