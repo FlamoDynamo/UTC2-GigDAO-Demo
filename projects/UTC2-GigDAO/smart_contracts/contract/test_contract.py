@@ -76,7 +76,7 @@ def test_issue_nft():
     creator_mnemonic = "tree river prefer carry lift together charge priority cloud oxygen model twin hockey citizen deputy baby flip security bullet dry seat concert special about pride"  # Thay thế bằng mnemonic thực từ tài khoản testnet của bạn
 
     # Sử dụng AlgoExplorer public API cho testnet
-    algod_address = "https://testnet-api.algoexplorer.io"
+    algod_address = "https://testnet-api.4160.nodely.dev/"
     algod_token = ""  # Không cần token cho AlgoExplorer public API
     algod_client = algod.AlgodClient(algod_token, algod_address)
 
