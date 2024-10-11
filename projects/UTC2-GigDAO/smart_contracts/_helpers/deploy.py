@@ -5,7 +5,7 @@ from smart_contracts.contract.nft_contract import NFTMintingContract
 
 def deploy():
     # Sử dụng Algonode.io cho testnet
-    algod_address = "https://104.196.252.103"
+    algod_address = "https://testnet-api.4160.nodely.dev/"
     algod_token = ""  # Algonode không yêu cầu token
     
     try:
